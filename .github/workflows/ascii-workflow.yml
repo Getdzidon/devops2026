@@ -11,6 +11,5 @@ jobs:
               uses: actions/checkout@v6
 
             - name: Execute Shell Script
-              run: |
-                chmod +x ascii-script.sh
-                ./ascii-script.sh
+              run: ./ascii-script.sh
+            
