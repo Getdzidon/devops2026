@@ -8,6 +8,9 @@ jobs:
     name: My updated job
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6
+
       - name: Updated Welcome Message
         run: echo "Welcome to the CICD world with Github actions"
 
