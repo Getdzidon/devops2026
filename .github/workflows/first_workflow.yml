@@ -17,4 +17,4 @@ jobs:
           echo "My first GitHub Actions Job"
           ls -la
           cat happy.txt
-          cat dockerfile
+          cat Dockerfile
