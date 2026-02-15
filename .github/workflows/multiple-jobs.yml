@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Install Cowsay Program
         run: sudo apt-get install cowsay -y
@@ -16,16 +16,22 @@ jobs:
       - name: Execute Cowsay Command 
         run: cowsay -f dragon "Run for cover, I am a DRAGON......RAWR" >> dragon.txt
 
-      - name: Sleep for 30 seconds
-        run: sleep 30
+#correction
+      - name: Upload Dragon File
+        uses: actions/upload-artifact@v6
+        with:
+          name: dragon-text-file
+          path: dragon.txt
 
 
   test: 
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Sleep for 10 seconds
-        run: sleep 10
+      - name: Download Dragon File
+        uses: actions/download-artifact@v7 #correction
+        with:
+          name: dragon-text-file
 
       - name: Test file exists 
         run: grep -i "dragon" dragon.txt
@@ -34,6 +40,13 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps: 
+
+#correction
+      - name: Download Dragon File
+        uses: actions/download-artifact@v7 #correction
+        with:
+          name: dragon-text-file
+
       - name: Read File
         run: cat dragon.txt
 
