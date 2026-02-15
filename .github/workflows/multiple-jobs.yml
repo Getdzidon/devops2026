@@ -1,0 +1,40 @@
+name: Build, Test and Deploy
+
+on: 
+  - push 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6
+
+      - name: Install Cowsay Program
+        run: sudo apt-get install cowsay -y
+
+      - name: Execute Cowsay Command 
+        run: cowsay -f dragon "Run for cover, I am a DRAGON......RAWR" >> dragon.txt
+
+      - name: Sleep for 30 seconds
+        run: sleep 30
+
+
+  test: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sleep for 10 seconds
+        run: sleep 10
+
+      - name: Test file exists 
+        run: grep -i "dragon" dragon.txt
+
+
+  deploy: 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Read File
+        run: cat dragon.txt
+
+      - name: Deploy 
+        run: echo "Deploying......."
